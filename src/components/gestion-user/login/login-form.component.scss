@@ -1,0 +1,49 @@
+.bloc-add-user,
+.bloc-login-form {
+  margin: 1em auto 0 auto;
+  text-align: center;
+  width: 22em;
+  background: white;
+  padding: 1em;
+  border-radius: 10px;
+
+  mat-checkbox {
+    display: block;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  mat-form-field {
+    display: block;
+
+    &.mat-form-field-email {
+      margin-bottom: 1em;
+    }
+  }
+
+  .link-forgot-password {
+    color: #2b3336;
+    margin-bottom: 15px;
+    cursor: pointer;
+    font-family: Regular,Helvetica,Arial,sans-serif;
+    font-size: 0.9em;
+    display: block;
+
+    &:hover {
+      color: lightgrey;
+    }
+  }
+}
+
+.bloc-login-form {
+  margin-bottom: 1em;
+}
+
+@media only screen and (min-width: 0) and (max-width: 950px) {
+
+
+}
+
+@media only screen and (min-width: 951px) {
+
+}
