@@ -193,7 +193,7 @@ import {LIST_PAYS, Pays} from '../../../models/pays.model';
           <mat-label>Pays</mat-label>
           <mat-select formControlName="pays">
             <ng-container *ngFor="let pays of listPays">
-              <mat-option [value]="pays">{{ pays.label }}</mat-option>
+              <mat-option [value]="pays.code">{{ pays.label }}</mat-option>
             </ng-container>
           </mat-select>
         </mat-form-field>
@@ -303,6 +303,7 @@ export class SignupComponent implements OnInit {
 
   submitStep3(): void {
     if (this.adresseForm.valid) {
+
       const data = {
         adresse: {}
       };
@@ -310,6 +311,17 @@ export class SignupComponent implements OnInit {
       Object.assign(data, this.infoPersoForm.value);
       Object.assign(data.adresse, this.adresseForm.value);
       console.log(this.identifiantForm.value, this.infoPersoForm.value, this.adresseForm.value, data);
+      const user: User = new User(data);
+      console.log(user);
+      this.authService.register(user).subscribe(
+        result => {
+          console.log(result);
+
+        },
+        err => {
+          console.log(err);
+        }
+      );
     }
   }
 

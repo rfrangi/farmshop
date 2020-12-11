@@ -12,6 +12,18 @@ export class Adresse {
 
   constructor(data: any= {}) {
     Object.assign(this, data);
-    this.pays = data.pays ? new Pays(data.pays) : LIST_PAYS.FRANCE;
+    this.pays = data.pays ? LIST_PAYS[data.pays] : LIST_PAYS.FRANCE;
+  }
+
+  serialize(): any {
+    return {
+      id: this.id,
+      adresse: this.adresse,
+      complement: this.complement,
+      ville: this.ville.toUpperCase(),
+      codePostal: this.codePostal,
+      pays: this.pays.code,
+      description: this.description,
+    };
   }
 }

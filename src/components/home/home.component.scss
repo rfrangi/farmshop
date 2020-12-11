@@ -2,49 +2,62 @@ main {
   margin-top: 55px;
   background: #e9ebf1;
   height: 100%;
-}
 
-.col2 {
-  text-align: center;
-  color: #d6180b;
-  background: white;
-  margin: 0 auto;
-  font-size: 1.2em;
-  font-family: Sana Sans Alt Regular,Helvetica,Arial,sans-serif;
 
-  span {
-    font-weight: 700;
+  .col2 {
+    text-align: center;
+    color: #d6180b;
+    background: white;
+    margin: 0 auto;
+    font-size: 1.2em;
+    font-family: Sana Sans Alt Regular, Helvetica, Arial, sans-serif;
+
+    span {
+      font-weight: 700;
+    }
+
+    .bandeau-bienvenue {
+      background: #d6180b;
+      color: white;
+      padding: 1em;
+
+      .title-offre {
+        font-size: 1.5em;
+        font-weight: 900;
+        display: block;
+      }
+
+      .description-offre,
+      .code-offre {
+        font-size: 1em;
+        display: inline-block;
+        vertical-align: middle;
+        margin-top: 10px;
+      }
+
+      .code-offre {
+        padding: 5px;
+        margin-left: 10px;
+        border-radius: 5px;
+        background: white;
+        color: #d6180b;
+      }
+    }
   }
 
-  .bandeau-bienvenue {
-    background: #d6180b;
-    color: white;
-    padding: 1em;
+  .bloc-description-livraison {
+    background: white;
+    border-radius: 10px;
+    text-align: center;
+    display: block;
+    margin: 2em 5em;
 
-    .title-offre {
-      font-size: 1.5em;
-      font-weight: 900;
-      display: block;
-    }
-
-    .description-offre,
-    .code-offre {
-      font-size: 1em;
-      display: inline-block;
-      vertical-align: middle;
-      margin-top: 10px;
-    }
-
-    .code-offre {
-      padding: 5px;
-      margin-left: 10px;
-      border-radius: 5px;
-      background: white;
-      color: #d6180b;
+    h2 {
+      color: #2b3336;
+      padding: 1em;
     }
   }
 }
-
 @media only screen and (min-width: 0) and (max-width: 950px) {
   .col {
     display: block;
