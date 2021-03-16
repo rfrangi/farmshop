@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from '../components/app/app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import {HeaderComponent} from '../components/header/header.component';
 
 import {HomeComponent} from '../components/home/home.component';
 import {AppRoutingModule} from './app-routing.module';
@@ -17,8 +16,7 @@ import {CommonModule} from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    HeaderComponent
+    HomeComponent
   ],
   imports: [
     SharedModule,

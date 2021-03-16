@@ -66,11 +66,12 @@ main {
 
     img {
       width: 100%;
+      display: block;
     }
   }
 
   .description-farm-store {
-    margin: 1em;
+    padding: 1em;
   }
 }
 

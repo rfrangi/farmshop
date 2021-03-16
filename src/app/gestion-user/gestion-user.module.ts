@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import {GestionUserRoutingModule} from './gestion-user-routing.module';
 import {LoginFormComponent} from '../../components/gestion-user/login/login-form.component';
-import {MyAccountComponent} from '../../components/gestion-user/my-account/my-account.component';
 import {SignupComponent} from '../../components/gestion-user/signup/signup.component';
 import {GestionUserComponent} from '../../components/gestion-user/gestion-user.component';
 import {SharedModule} from '../shared/shared.module';
@@ -11,7 +10,6 @@ import {HeaderGestionUserComponent} from '../../components/gestion-user/header-g
 
 @NgModule({
   declarations: [
-    MyAccountComponent,
     LoginFormComponent,
     SignupComponent,
     GestionUserComponent,

@@ -13,7 +13,7 @@ import {ActivatedRoute, Router} from '@angular/router';
         <div class="description-farm-store">
           Découvrez <span>les produits locaux</span> de vos fermiers, éleveurs
           <br/>pour votre intérêt, celui du producteur et de notre chère planète !
-          <br/><br/>Comparez, évaluez pour que chacun puisse consommer mieux et moins chère !
+          <br/><br/>Comparez, évaluez pour que chacun puisse consommer mieux et moins chère
         </div>
         <div class="bandeau-bienvenue">
           <span class="title-offre">5€ offerts dès 50€ d'achats</span>

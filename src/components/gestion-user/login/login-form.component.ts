@@ -3,6 +3,9 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthUserService} from '../../../services/auth-user.service';
 import {TokenStorageService} from '../../../services/token-storage.service';
 import {Router} from '@angular/router';
+import {ToastService} from '../../../services/toast.service';
+import {showMessageDuring} from '../../shared/popins/popinMessageDuring/popin-message-during.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector:  'app-login-form',
@@ -65,7 +68,9 @@ export class LoginFormComponent implements OnInit {
 
   constructor(private authService: AuthUserService,
               private tokenStorage: TokenStorageService,
-              private router: Router) {
+              private router: Router,
+              private toastService: ToastService,
+              public dialog: MatDialog) {
   }
 
   logout(): void {
@@ -93,12 +98,12 @@ export class LoginFormComponent implements OnInit {
     if (this.loginForm.valid) {
       this.authService.login(value).subscribe(
         data => {
-          this.tokenStorage.saveToken(data.accessToken);
-          this.tokenStorage.saveUser(data);
+          this.toastService.success(`Bienvenue ${data.user.email}`);
+          this.tokenStorage.saveToken(data.token);
+          this.tokenStorage.saveUser(data.user);
           console.log(this.tokenStorage.getUser());
           this.isLoginFailed = false;
-          this.router.navigate(['utilisateur', 'my-account']);
-
+          this.router.navigate(['home']);
         },
         err => {
           console.log(err);

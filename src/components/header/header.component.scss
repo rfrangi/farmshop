@@ -1,3 +1,22 @@
+
+h3 {
+  text-align: center;
+  border-bottom: 2px solid darkgreen;
+  margin: 0;
+  padding: 0 2em 5px 2em;
+}
+
+button {
+  font-size: 0.9em;
+
+  span {
+    color: black;
+  }
+  &:hover span {
+    color: darkgreen;
+  }
+}
+
 .header-menu .remove-block {
   display: none!important;
 }

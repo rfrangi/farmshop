@@ -3,6 +3,8 @@ import {AuthUserService} from '../../../services/auth-user.service';
 import {User} from '../../../models/user.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {LIST_PAYS, Pays} from '../../../models/pays.model';
+import {ToastService} from '../../../services/toast.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector:  'app-signup',
@@ -66,9 +68,7 @@ import {LIST_PAYS, Pays} from '../../../models/pays.model';
           || hasError(identifiantForm, 'password', 'maxlength')">
             Votre mot de passe doit contenir entre 8  et 50 caractères
           </mat-error>
-
         </mat-form-field>
-
         <mat-slide-toggle color="primary">Recevoir les offres de FarmShop</mat-slide-toggle>
         <button mat-raised-button color="primary" type="submit">Suivant</button>
       </form>
@@ -225,7 +225,9 @@ export class SignupComponent implements OnInit {
   adresseForm: FormGroup;
   listPays: Array<Pays> = Object.values(LIST_PAYS);
 
-  constructor(private authService: AuthUserService) { }
+  constructor(private authService: AuthUserService,
+              private router: Router,
+              private toastService: ToastService) { }
 
   ngOnInit(): void  {
     this.step = 1;
@@ -316,10 +318,17 @@ export class SignupComponent implements OnInit {
       this.authService.register(user).subscribe(
         result => {
           console.log(result);
-
+          this.toastService.success('Votre compte est créé');
+          this.router.navigate(['utilisateur', 'login']);
         },
         err => {
           console.log(err);
+          if (err.error.message === 'EMAIL_EXISTING'){
+            this.toastService.warning('Oups, cette adresse e-mail possède déjà un compte.');
+            this.step = 1;
+          } else  {
+            this.toastService.genericError(err);
+          }
         }
       );
     }

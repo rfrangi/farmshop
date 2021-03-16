@@ -1,5 +1,7 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {TokenStorageService} from '../../services/token-storage.service';
+import {Router} from '@angular/router';
+import {ToastService} from '../../services/toast.service';
 
 @Component({
   selector: 'app-header',
@@ -10,10 +12,33 @@ import {TokenStorageService} from '../../services/token-storage.service';
         </span>
       </div>
       <div class="action-icon">
-        <a [routerLink]="['/utilisateur']">
+        <a (click)="goToLoginOrMenu()" [matMenuTriggerFor]="menu">
           <mat-icon aria-label="Icon identity">perm_identity</mat-icon>
           <span>{{labelUsername}}</span>
         </a>
+        <mat-menu #menu="matMenu">
+          <h3> {{ labelUsername }}</h3>
+          <button mat-menu-item (click)="goToUrl(['client', 'mon-compte'])">
+            <mat-icon color="primary">home</mat-icon>
+            <span>Mon compte</span>
+          </button>
+          <button mat-menu-item (click)="goToUrl(['client', 'mes-commandes'])">
+            <mat-icon color="primary">shopping_cart</mat-icon>
+            <span>Mes commandes</span>
+          </button>
+          <button mat-menu-item (click)="goToUrl(['client', 'mes-produits'])">
+            <mat-icon color="primary">menu</mat-icon>
+            <span>Mes produits</span>
+          </button>
+          <button mat-menu-item (click)="goToUrl(['client', 'mes-producteurs'])">
+            <mat-icon color="primary">list</mat-icon>
+            <span>Mes producteurs</span>
+          </button>
+          <button mat-menu-item (click)="logout()">
+          <mat-icon color="primary">power_settings_new</mat-icon>
+          <span>Déconnexion</span>
+        </button>
+        </mat-menu>
       </div>
     </div>
 
@@ -66,15 +91,19 @@ export class HeaderComponent {
   @ViewChild('blockProducteurs') blockProducteurs: ElementRef;
   @ViewChild('blockBasket') blockBasket: ElementRef;
 
-  constructor(private tokenStorage: TokenStorageService) {}
+  constructor(private tokenStorage: TokenStorageService,
+              private router: Router,
+              private toastService: ToastService) {}
+
+  goToLoginOrMenu(): void {
+    if (!this.tokenStorage.getToken()) {
+      this.router.navigate(['utilisateur']);
+    }
+  }
 
   get labelUsername(): string {
     return this.tokenStorage.getUser() && this.tokenStorage.getToken() ? this.tokenStorage.getUser().firstname : 'Mon compte';
   }
-
-
-
-
 
   displayZoneSearch(): void {
     this.blockLogo.nativeElement.classList.add('remove-block');
@@ -92,5 +121,15 @@ export class HeaderComponent {
     this.blockSearch.nativeElement.classList.remove('remove-block');
     this.blockBasket.nativeElement.classList.remove('remove-block');
     this.formSearch.nativeElement.classList.remove('display-block-search');
+  }
+
+  logout(): void {
+    this.toastService.success(`A bientot ${this.tokenStorage.getUser().firstname}`);
+    this.tokenStorage.signOut();
+    this.router.navigate(['home']);
+  }
+
+  goToUrl(urls: Array<string>): void {
+    this.router.navigate(urls);
   }
 }

@@ -1,15 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+html, body {
+  height: 100%;
+  background: #e9ebf1;
+}
+
 html:not([data-scroll='0']) {
   .header-menu {
     top: 0;
+  }
+  .main-header-menu {
+    //margin-top: 110px;
   }
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 h1 { color: #d6180b; font-weight: 500; font-size: 1.5em; }
 button { color: white!important; }
 a { cursor: pointer; text-decoration: none;}
+
+
+
+.mat-snack-bar-container {
+  color: white;
+
+  .mat-button {
+    background-color: black;
+    color: white;
+  }
+}
+
+.mat-snack-bar-container.success-snackbar {
+  background-color: #2b3336;
+  color: #e9ebf1;
+}
+
+.mat-snack-bar-container.error-snackbar {
+  color: #d6180b;
+}
+
+.mat-snack-bar-container.warning-snackbar {
+  color: darkorange;
+}
+
+.mat-snack-bar-container.info-snackbar {
+  color: darkgreen;
+}
+
+
+
+
+
+
+
 
 @import '~@angular/material/theming';
 // Plus imports for other components in your app.

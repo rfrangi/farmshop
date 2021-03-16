@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {User} from '../models/user.model';
+import {FetchService} from './fetch.service';
 
 const AUTH_API = 'http://localhost:8888/api/auth/';
 
@@ -15,7 +16,7 @@ const httpOptions = {
 })
 export class AuthUserService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, fetch: FetchService) { }
 
   login(credentials): Observable<any> {
     return this.http.post(AUTH_API + 'signin', {
